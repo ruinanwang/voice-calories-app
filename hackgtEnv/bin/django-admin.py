@@ -1,4 +1,4 @@
-#!/Users/nancy/Desktop/hackGT2018/hackgtEnv/bin/python3.6
+#!/Users/nancy/Documents/github_repo/voice-calories-app/hackGTEnv/bin/python3.6
 from django.core import management
 
 if __name__ == "__main__":
