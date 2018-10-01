@@ -36,7 +36,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/nancy/Desktop/hackGT2018/hackgtEnv"
+set -gx VIRTUAL_ENV "/Users/nancy/Documents/github_repo/voice-calories-app/hackGTEnv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

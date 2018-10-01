@@ -1,4 +1,4 @@
-#!/Users/nancy/Desktop/hackGT2018/hackgtEnv/bin/python
+#!/Users/nancy/Documents/github_repo/voice-calories-app/hackGTEnv/bin/python
 
 import sys
 import getopt

@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-# nancy: this is folder holding manage.py
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -21,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'c5@j327fhyupv4@6#o5gzh7(=o593r9zkj6-%x!er^5y**r7nh'
+SECRET_KEY = '=lx4k#$!$n=fj#&3g0y!nf&nlz6wv9_wn!6-el9g63_@f@t1he'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,9 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #add third party apps
+    #third party
 
-    #add own app
+    #Your own
     'product',
 ]
 
