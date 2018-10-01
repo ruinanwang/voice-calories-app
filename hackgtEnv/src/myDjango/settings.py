@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     #add third party apps
 
     #add own app
+    'product',
 ]
 
 MIDDLEWARE = [
