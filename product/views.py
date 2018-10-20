@@ -25,3 +25,8 @@ from rest_framework.decorators import api_view
 def getCalories(request):
     data = text.retrieveUnitItemFromText(request.data)
     return Response({"calorie":data})
+
+@api_view(['GET', 'POST'])
+def getRecordList(request):
+    print(retrieveRecordListByTimeID(time, id))
+    return Response(123)

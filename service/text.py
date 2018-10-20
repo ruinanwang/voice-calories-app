@@ -7,7 +7,7 @@ def retrieveUnitItemFromText(text):
     totalCalorie = getIntFromString(words[0]) * Calorie.getCalorieByUnitItem(words[1], words[3])[0][0]
 
     if totalCalorie > 0:
-        Calorie.insertCalorieRecord(totalCalorie)
+        Calorie.insertCalorieRecord(totalCalorie, words[3])
         return totalCalorie
     else:
         return -1

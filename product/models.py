@@ -7,6 +7,7 @@ class Info(models.Model): #get features form default jango model class
     calorie = models.IntegerField()
 
 class Record(models.Model):
-	uid = models.IntegerField()
-	time = models.DateTimeField(auto_now=True)
-	cal = models.IntegerField()
+    uid = models.IntegerField()
+    time = models.DateTimeField(auto_now=True)
+    cal = models.IntegerField()
+    item = models.CharField(max_length = 200)
