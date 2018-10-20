@@ -14,7 +14,12 @@ Django Restful API Fraimwork<br/>
 
 #### Run the server
 
-`python manage.py runserver`
+Use the environment:<br/>
+`cd hackgtEnv/`<br/>
+`source bin/activate`<br/>
+
+Serve:
+`python manage.py runserver`<br/>
 
 Run the database: <br/>
 `python manage.py migrate`
