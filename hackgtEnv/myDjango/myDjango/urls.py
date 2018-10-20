@@ -22,11 +22,9 @@ from product import views
 
 router = routers.DefaultRouter()
 router.register(r'products', views.ProductViewSet)
-# router.register(r'hello', views.hello_world, base_name='hello')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include(router.urls)),
-    # path('about/', TemplateView.as_view(template_name="about.html")),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

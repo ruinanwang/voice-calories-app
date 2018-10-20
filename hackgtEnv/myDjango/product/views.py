@@ -14,7 +14,3 @@ class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
 
 from rest_framework.decorators import api_view
-
-# @api_view()
-def hello_world(request, format=None):
-    return Response({"message": "Hello, world!"})
