@@ -4,6 +4,8 @@ from django.contrib.auth.models import User, Group
 from product.models import Info
 from rest_framework import viewsets
 from product.serializers import UserSerializer, GroupSerializer, ProductSerializer
+from rest_framework.response import Response
+from dbAccess import Calorie
 
 # Create your views here.
 class ProductViewSet(viewsets.ModelViewSet):
@@ -15,6 +17,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 
 from rest_framework.decorators import api_view
 
-# @api_view()
-def hello_world(request, format=None):
-    return Response({"message": "Hello, world!"})
+@api_view(['GET', 'POST'])
+def hello_world(request):
+    calorie = Calorie.getCalorieByUnitItem("bowl", "rice")
+    return Response({"message": calorie})
