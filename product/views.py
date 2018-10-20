@@ -23,8 +23,5 @@ from rest_framework.decorators import api_view
 
 @api_view(['POST'])
 def getCalories(request):
-    if request.method == 'POST':
-        body_unicode = request.body.decode('utf-8')
-        body = json.loads(body_unicode)
-        data = text.retrieveUnitItemFromText(body)
-        return Response({"calorie": data})
+    data = text.retrieveUnitItemFromText(request.data)
+    return Response({"calorie":data[0][0]})
