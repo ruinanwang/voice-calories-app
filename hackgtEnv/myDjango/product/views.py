@@ -9,6 +9,8 @@ from dbAccess import Calorie
 from rest_framework.decorators import api_view
 from service import text
 
+import json
+
 # Create your views here.
 class ProductViewSet(viewsets.ModelViewSet):
     """
@@ -19,7 +21,10 @@ class ProductViewSet(viewsets.ModelViewSet):
 
 from rest_framework.decorators import api_view
 
-@api_view(['GET', 'POST'])
-def hello_world(request):
-    data = text.retrieveUnitItemFromText("one cup of coffee")
-    return Response({"calorie": data})
+@api_view(['POST'])
+def getCalories(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        data = text.retrieveUnitItemFromText("one cup of coffee")
+        return Response({"calorie": data})
