@@ -4,10 +4,14 @@ def retrieveUnitItemFromText(text):
     text = processText(text)
     words = text.split()
 
-    totalCalorie = getIntFromString(words[0]) * Calorie.getCalorieByUnitItem(words[1], words[3])[0][0]
+    num = getIntFromString(words[0])
+    unit = getUnit(words[1])
+    item = words[3]
+
+    totalCalorie = num * Calorie.getCalorieByUnitItem(unit, item)[0][0]
 
     if totalCalorie > 0:
-        Calorie.insertCalorieRecord(totalCalorie, words[3])
+        Calorie.insertCalorieRecord(totalCalorie, item)
         return totalCalorie
     else:
         return -1
@@ -15,6 +19,12 @@ def retrieveUnitItemFromText(text):
 
 def processText(text):
     return text
+
+def getUnit(unitString):
+    if unitString == "cup" or unitString == "cups":
+        return "cup"
+    elif unitString == "bowl" or unitString == "bowls":
+        return "bowl"
 
 def getIntFromString(numberString):
     if numberString == 'one':
