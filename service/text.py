@@ -2,6 +2,9 @@ from dbAccess import Calorie
 
 def retrieveUnitItemFromText(text):
     text = processText(text)
+
+    print( text )
+
     words = text.split()
 
     num = getIntFromString(words[0])
