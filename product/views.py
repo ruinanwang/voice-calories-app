@@ -24,4 +24,4 @@ from rest_framework.decorators import api_view
 @api_view(['POST'])
 def getCalories(request):
     data = text.retrieveUnitItemFromText(request.data)
-    return Response({"calorie":data[0][0]})
+    return Response({"calorie":data})
