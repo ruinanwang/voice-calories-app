@@ -7,6 +7,7 @@ from product.serializers import UserSerializer, GroupSerializer, ProductSerializ
 from rest_framework.response import Response
 from dbAccess import Calorie
 from rest_framework.decorators import api_view
+from service import text
 
 # Create your views here.
 class ProductViewSet(viewsets.ModelViewSet):
@@ -20,5 +21,5 @@ from rest_framework.decorators import api_view
 
 @api_view(['GET', 'POST'])
 def hello_world(request):
-    calorie = Calorie.getCalorieByUnitItem("bowl", "rice")
-    return Response({"message": calorie})
+    data = text.retrieveUnitItemFromText("one cup of coffee")
+    return Response({"calorie": data})
