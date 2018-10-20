@@ -35,6 +35,7 @@ Use the environment:<br/>
 
 Serve:
 `npm start`<br/>
+Go to webpage, and choose either `Run on Android`
 
 
 
