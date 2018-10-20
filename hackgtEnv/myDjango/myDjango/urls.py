@@ -22,7 +22,6 @@ from product import views
 
 router = routers.DefaultRouter()
 router.register(r'products', views.ProductViewSet)
-# router.register(r'hello', views.hello_world, base_name='hello')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
