@@ -26,5 +26,5 @@ def getCalories(request):
     if request.method == 'POST':
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
-        data = text.retrieveUnitItemFromText("one cup of coffee")
+        data = text.retrieveUnitItemFromText(body)
         return Response({"calorie": data})
