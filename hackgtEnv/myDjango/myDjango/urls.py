@@ -27,7 +27,7 @@ router.register(r'products', views.ProductViewSet)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include(router.urls)),
-    url(r'^hello/', views.hello_world),
+    url(r'^getCalories', views.getCalories),
     # path('about/', TemplateView.as_view(template_name="about.html")),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
