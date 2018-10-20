@@ -37,5 +37,9 @@ Serve:
 `npm start`<br/>
 Go to webpage, and choose either `Run on Android`
 
+### Note:
+
+"frontend" file is a backup of the old react native fronend that is not currently used
+
 
 
