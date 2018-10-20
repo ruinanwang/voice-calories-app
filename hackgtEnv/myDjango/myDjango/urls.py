@@ -19,6 +19,7 @@ from django.views.generic import TemplateView
 from django.urls import path
 from rest_framework import routers
 from product import views
+from rest_framework.urlpatterns import format_suffix_patterns
 
 router = routers.DefaultRouter()
 router.register(r'products', views.ProductViewSet)
@@ -26,7 +27,7 @@ router.register(r'products', views.ProductViewSet)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include(router.urls)),
-    url(r'^hello', views.hello_world),
+    url(r'^hello/', views.hello_world),
     # path('about/', TemplateView.as_view(template_name="about.html")),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
