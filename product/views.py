@@ -28,7 +28,7 @@ def getCalories(request):
     data = text.retrieveUnitItemFromText(request.data['text'])
     return Response({"calorie": data})
 
-@api_view(['GET', 'POST'])
+@api_view(['POST'])
 def getRecordList(request):
     list = record.retrieveRecordListByTimeID(request.data['time'], request.data['uid'])
 
