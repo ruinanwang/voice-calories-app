@@ -51,8 +51,8 @@ def getUnit(unitString):
         return "loaf"
     elif unitString == "can" or unitString == "cans":
         return "can"
-    elif unitString == "peice" or unitString == "peices":
-        return "peice"
+    elif unitString == "piece" or unitString == "pieces":
+        return "piece"
     elif unitString == "bag" or unitString == "bags":
         return "bag"
     elif unitString == "glass" or unitString == "glasses":
