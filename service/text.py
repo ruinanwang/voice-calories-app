@@ -39,6 +39,29 @@ def getUnit(unitString):
         return "cup"
     elif unitString == "bowl" or unitString == "bowls":
         return "bowl"
+    elif unitString == "unit" or unitString == "units":
+        return "unit"
+    elif unitString == "slice" or unitString == "slices":
+        return "slice"
+    elif unitString == "bottle" or unitString == "bottles":
+        return "bottle"
+    elif unitString == "tablespoon" or unitString == "tablespoons":
+        return "tablespoon"
+    elif unitString == "loaf" or unitString == "loafs":
+        return "loaf"
+    elif unitString == "can" or unitString == "cans":
+        return "can"
+    elif unitString == "peice" or unitString == "peices":
+        return "peice"
+    elif unitString == "bag" or unitString == "bags":
+        return "bag"
+    elif unitString == "glass" or unitString == "glasses":
+        return "glass"
+    elif unitString == "spoon" or unitString == "spoons":
+        return "spoon"
+    else:
+        return "unit"
+
 
 def getIntFromString(numberString):
     if numberString == 'one':
