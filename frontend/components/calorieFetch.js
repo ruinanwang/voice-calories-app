@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Text, View, Button } from 'react-native';
+import { Text, View, Button } from 'react-native'
+// import Voice from 'react-native-voice'
 
 class CalorieFetch extends Component {
     constructor() {
@@ -12,7 +13,7 @@ class CalorieFetch extends Component {
     }
 
     componentDidMount() {
-        // this.fetchCalorie("one cup of coffee")
+
     }
 
     fetchCalorie = (calorieString) => {
