@@ -2,6 +2,7 @@ package com.practice.jinghua_z.mycalary;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.graphics.Color;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,11 +32,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     protected static final int RESULT_SPEECH = 1;
-    private TextView txtText, txtTextInt;
+    private TextView txtText, txtTextInt, calTxt;
     private Button voice_button;
-    private int total_calaries = 0;
+    public final int[] total_calaries = new int[]{0};
+    String str;
 
-    private static final String baseUrl = "http://10.0.2.2:8000/";
+    private static final String baseUrl = "https://radiant-brook-49591.herokuapp.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,21 +47,27 @@ public class MainActivity extends AppCompatActivity {
         voice_button = (Button) findViewById(R.id.voice_button);
         txtTextInt = (TextView) findViewById(R.id.textView1);
         txtText = (TextView) findViewById(R.id.textView2);
+        calTxt = (TextView) findViewById(R.id.textView3);
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/handwriting.ttf");
-        txtText.setTypeface(font);
-        txtText.setText(Integer.toString(total_calaries));
 
-        getCalList(1);
+        txtText.setTypeface(font);
+        txtTextInt.setTypeface(font);
+        calTxt.setTypeface(font);
+        setLevelText(txtTextInt, txtText, total_calaries[0], calTxt);
+        Log.d("stella", "before voice");
+
 
         voice_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("stella", "into voice");
                 Intent intent = new Intent(
                         RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
 
                 try {
+                    Log.d("stella", "into voice");
                     startActivityForResult(intent, RESULT_SPEECH);
                 } catch (ActivityNotFoundException a) {
                     Log.d("tag", a.toString());
@@ -72,24 +80,34 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case RESULT_SPEECH: {
                 if (resultCode == RESULT_OK && null != data) {
 
-                    ArrayList<String> text = data
-                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    txtText.setText(total_calaries);
+                    ArrayList<String> text =  null;
+                    text = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+
+                    while (text == null) {
+                    }
+
+                    str = text.get(0);
+
+
+                    getCalories(str, total_calaries);
+//                    if(text != null) break;
                     break;
+
                 }
+
             }
         }
     }
 
-    public void getCalories(String voiceInput) {
+
+
+    public void getCalories(String voiceInput,  final int[] calareis) {
 
         Retrofit getCaloriesRetrofit = new Retrofit.Builder().
                 baseUrl(baseUrl).
@@ -107,8 +125,16 @@ public class MainActivity extends AppCompatActivity {
                 if (response.body() != null) {
                     Log.d("nancy", Integer.toString(response.body().getCalorie()));
                     int calorie = response.body().getCalorie();
+                    if(calorie != -1) {
+                        calareis[0] += calorie;
+                    }
+
+                    txtText.setText(Integer.toString(calorie));
+                    Log.d("stella", Integer.toString(calareis[0]));
+                    setLevelText(txtTextInt, txtText, calareis[0], calTxt);
                 }
             }
+
 
             @Override
             public void onFailure(Call<GetCaloriesResponse> call, Throwable t) {
@@ -116,6 +142,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void setLevelText(TextView level, TextView txt, int calory_num, TextView calary) {
+        txt.setText(Integer.toString(calory_num));
+        if(calory_num <= 1000) {
+            level.setText("Level: Low");
+            txt.setTextColor(Color.parseColor("#FFA500"));
+            level.setTextColor(Color.parseColor("#FFA500"));
+            calary.setTextColor(Color.parseColor("#FFA500"));
+        }
+        else if(calory_num <= 3000){
+            level.setText("Level: Standard");
+            level.setTextColor(Color.GREEN);
+            txt.setTextColor(Color.GREEN);
+            calary.setTextColor(Color.GREEN);
+        }
+        else {
+            level.setText("Level: High");
+            level.setTextColor(Color.RED);
+            txt.setTextColor(Color.RED);
+            calary.setTextColor(Color.RED);
+        }
+        return;
     }
 
     public void getCalList(int uid) {
