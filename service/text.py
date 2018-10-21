@@ -4,9 +4,23 @@ def retrieveUnitItemFromText(text):
     text = processText(text)
     words = text.split()
 
-    num = getIntFromString(words[0])
-    unit = getUnit(words[1])
-    item = words[3]
+    num = None
+    if (len(words) >= 1):
+        num = getIntFromString(words[0])
+    else:
+        return -1
+
+    unit = None
+    if (len(words) >= 2):
+        unit = getUnit(words[1])
+    else:
+        return -1
+
+    item = None
+    if (len(words) >= 4):
+        item = words[3]
+    else:
+        return -1
 
     totalCalorie = num * Calorie.getCalorieByUnitItem(unit, item)[0][0]
 
