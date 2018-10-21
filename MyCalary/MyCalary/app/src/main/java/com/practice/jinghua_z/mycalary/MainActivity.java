@@ -106,16 +106,16 @@ public class MainActivity extends AppCompatActivity {
 
         GetCaloriesService getCaloriesService = getCaloriesRetrofit.create(GetCaloriesService.class);
         GetCaloriesBodyString getCaloriesBodyString = new GetCaloriesBodyString(voiceInput);
-        Call<GetCaloriesResponse> getCaloriesResponse = getCaloriesService.getCalories(getCaloriesBodyString);
+        Call<GetCaloriesResponse> getCaloriesResponse = getCaloriesService.getCalories("application/json",getCaloriesBodyString);
 
-        Log.d("nancy bodyString", getCaloriesBodyString.getVoiceInput());
+//        Log.d("nancy bodyString", getCaloriesBodyString.getVoiceInput());
 
         getCaloriesResponse.enqueue(new Callback<GetCaloriesResponse>() {
             @Override
             public void onResponse(Call<GetCaloriesResponse> call, Response<GetCaloriesResponse> response) {
                 Log.d("nancy", response.toString());
                 if (response.body() != null) {
-                    Log.d("nancy", response.toString());
+                    Log.d("nancy", Integer.toString(response.body().getCalorie()));
                     int calorie = response.body().getCalorie();
                 }
             }
