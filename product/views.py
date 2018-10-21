@@ -28,8 +28,13 @@ def getCalories(request):
     data = text.retrieveUnitItemFromText(request.data['text'])
     return Response({"calorie": data})
 
-@api_view(['GET', 'POST'])
+@api_view(['POST'])
 def getRecordList(request):
+    if (len(request.data) != 2):
+        return Response({"data":-1, "error":"incorrect JSON length"})
+    if ('time' not in request.data.keys() or 'uid' not in request.data.keys()):
+        return Response({"data":-1, "error":"incorrect JSON elements"})
+
     list = record.retrieveRecordListByTimeID(request.data['time'], request.data['uid'])
 
     outList = []
@@ -39,4 +44,10 @@ def getRecordList(request):
         cur['calorie'] = i[1]
         outList.append(cur)
 
-    return Response(outList)
+    return Response({'data':outList})
+
+# @api_view(['POST'])
+# def storeData(request):
+#     list = record.retrieveRecordListByTimeID(request.data['time'], request.data['uid'])
+
+#     return Response({'data':outList})
