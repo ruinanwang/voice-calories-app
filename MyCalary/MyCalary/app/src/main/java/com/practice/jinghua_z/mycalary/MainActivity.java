@@ -13,13 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import android.graphics.Typeface;
 
 public class MainActivity extends AppCompatActivity {
 
     protected static final int RESULT_SPEECH = 1;
-    private ImageView imageView;
-    private TextView txtText;
-    private Button voice_button, voice_clear;
+    private TextView txtText, txtTextInt;
+    private Button voice_button;
+    private int total_calaries = 0;
 
 
     @Override
@@ -28,18 +29,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         voice_button = (Button) findViewById(R.id.voice_button);
-//        voice_clear = (Button) findViewById(R.id.voice_clear);
+        txtTextInt = (TextView) findViewById(R.id.textView1);
         txtText = (TextView) findViewById(R.id.textView2);
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/handwriting.ttf");
+        txtText.setTypeface(font);
+        txtText.setText(Integer.toString(total_calaries));
 
-
-
-//        voice_clear.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                backingString.setBackinng_aud("");
-//                txtText.setText(" Output what you said :)");
-//            }
-//        });
 
         voice_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     startActivityForResult(intent, RESULT_SPEECH);
-                    txtText.setText("");
                 } catch (ActivityNotFoundException a) {
                     Log.d("tag", a.toString());
                     Toast t = Toast.makeText(getApplicationContext(),
@@ -73,10 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
                     ArrayList<String> text = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-//                    if (text.get(0) != null) {
-//                        backingString.add(1, text.get(0) + ". ");
-//                        txtText.setText(backingString.getBackinng_aud());
-//                    }
+                    txtText.setText(total_calaries);
                     break;
                 }
             }

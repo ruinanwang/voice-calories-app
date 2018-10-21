@@ -8,8 +8,10 @@ from rest_framework.response import Response
 from dbAccess import Calorie
 from rest_framework.decorators import api_view
 from service import text
+from service import record
 
 import json
+
 
 # Create your views here.
 class ProductViewSet(viewsets.ModelViewSet):
@@ -28,5 +30,13 @@ def getCalories(request):
 
 @api_view(['GET', 'POST'])
 def getRecordList(request):
-    print(retrieveRecordListByTimeID(time, id))
-    return Response(123)
+    list = record.retrieveRecordListByTimeID(request.data['time'], request.data['uid'])
+
+    outList = []
+    for i in list:
+        cur = {}
+        cur['item'] = i[0]
+        cur['calorie'] = i[1]
+        outList.append(cur)
+
+    return Response(outList)
