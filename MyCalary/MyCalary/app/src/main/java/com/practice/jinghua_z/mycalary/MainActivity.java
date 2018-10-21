@@ -135,6 +135,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("nancy", response.toString());
                 if (response.body() != null) {
                     GetCalListResponse.Data[] resultDataList = response.body().getData();
+                    if (resultDataList != null) {
+                        Log.d("nancy", Integer.toString(resultDataList.length));
+                    }
                 }
             }
 
