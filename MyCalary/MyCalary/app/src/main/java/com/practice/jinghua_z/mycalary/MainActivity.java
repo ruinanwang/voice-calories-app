@@ -19,6 +19,9 @@ import android.graphics.Typeface;
 import com.practice.jinghua_z.mycalary.httpService.GetCaloriesService;
 import com.practice.jinghua_z.mycalary.requestModel.GetCaloriesBodyString;
 import com.practice.jinghua_z.mycalary.responseModel.GetCaloriesResponse;
+import com.practice.jinghua_z.mycalary.httpService.GetCalListService;
+import com.practice.jinghua_z.mycalary.requestModel.GetCalListBody;
+import com.practice.jinghua_z.mycalary.responseModel.GetCalListResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         txtText.setTypeface(font);
         txtText.setText(Integer.toString(total_calaries));
 
-        getCalories("one cup of coffee");
+        getCalList(1);
 
         voice_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,8 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void getCalories(String voiceInput) {
 
-        Log.d("nancy", "inside getCalories()");
-
         Retrofit getCaloriesRetrofit = new Retrofit.Builder().
                 baseUrl(baseUrl).
                 addConverterFactory(GsonConverterFactory.create()).
@@ -98,8 +99,6 @@ public class MainActivity extends AppCompatActivity {
         GetCaloriesService getCaloriesService = getCaloriesRetrofit.create(GetCaloriesService.class);
         GetCaloriesBodyString getCaloriesBodyString = new GetCaloriesBodyString(voiceInput);
         Call<GetCaloriesResponse> getCaloriesResponse = getCaloriesService.getCalories("application/json",getCaloriesBodyString);
-
-//        Log.d("nancy bodyString", getCaloriesBodyString.getVoiceInput());
 
         getCaloriesResponse.enqueue(new Callback<GetCaloriesResponse>() {
             @Override
@@ -113,6 +112,34 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<GetCaloriesResponse> call, Throwable t) {
+                Log.d("nancy error", t.toString());
+            }
+        });
+
+    }
+
+    public void getCalList(int uid) {
+
+        Retrofit getCalListRetrofit = new Retrofit.Builder().
+                baseUrl(baseUrl).
+                addConverterFactory(GsonConverterFactory.create()).
+                build();
+
+        GetCalListService getCalListService = getCalListRetrofit.create(GetCalListService.class);
+        GetCalListBody getCalListBody = new GetCalListBody(uid);
+        Call<GetCalListResponse> getCalListResponse = getCalListService.getList("application/json",getCalListBody);
+
+        getCalListResponse.enqueue(new Callback<GetCalListResponse>() {
+            @Override
+            public void onResponse(Call<GetCalListResponse> call, Response<GetCalListResponse> response) {
+                Log.d("nancy", response.toString());
+                if (response.body() != null) {
+                    GetCalListResponse.Data[] resultDataList = response.body().getData();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetCalListResponse> call, Throwable t) {
                 Log.d("nancy error", t.toString());
             }
         });
