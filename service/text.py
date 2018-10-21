@@ -64,25 +64,25 @@ def getUnit(unitString):
 
 
 def getIntFromString(numberString):
-    if numberString == 'one':
+    if numberString == 'one' or numberString == "1":
         return 1
-    elif numberString == 'two':
+    elif numberString == 'two' or numberString == "2":
         return 2
-    elif numberString == 'three':
+    elif numberString == 'three' or numberString == "3":
         return 3
-    elif numberString == 'four':
+    elif numberString == 'four' or numberString == "4":
         return 4
-    elif numberString == 'five':
+    elif numberString == 'five' or numberString == "5":
         return 5
-    elif numberString == 'six':
+    elif numberString == 'six' or numberString == "6":
         return 6
-    elif numberString == 'seven':
+    elif numberString == 'seven' or numberString == "7":
         return 7
-    elif numberString == 'eight':
+    elif numberString == 'eight' or numberString == "8":
         return 8
-    elif numberString == 'nine':
+    elif numberString == 'nine' or numberString == "9":
         return 9
-    elif numberString == 'ten':
+    elif numberString == 'ten' or numberString == "10":
         return 10
     else:
         return 0
