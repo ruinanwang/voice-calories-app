@@ -25,11 +25,13 @@ from rest_framework.decorators import api_view
 
 @api_view(['POST'])
 def getCalories(request):
+    print(request.data['text'])
     data = text.retrieveUnitItemFromText(request.data['text'])
     return Response({"calorie": data})
 
 @api_view(['POST'])
 def getRecordList(request):
+    print(request.data)
     if (len(request.data) != 2):
         return Response({"data":-1, "error":"incorrect JSON length"})
     if ('time' not in request.data.keys() or 'uid' not in request.data.keys()):
